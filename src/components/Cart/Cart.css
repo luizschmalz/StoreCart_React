@@ -1,0 +1,19 @@
+.cart-container{
+    width: 80%;
+    padding: 2rem;
+    margin: 0% 10%;
+      
+}
+
+.container-main{
+    padding: 5%;
+}
+
+.eachProduct{
+    padding: 0.5rem;
+    margin: 0.4rem;
+}
+
+.buttons-div{
+    margin-top: 2rem;
+}

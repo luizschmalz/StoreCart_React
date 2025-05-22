@@ -1,0 +1,27 @@
+.products {
+  width: 100%;
+  max-width: 1200px;
+  margin: 3rem auto;
+}
+
+.product-card {
+  border: 1px solid #e2e8f0; /* Cinza mais claro */
+  border-radius: 0.75rem;     /* Arredondado maior */
+  padding: 1rem;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+}
+
+.button{
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.buttonCart{
+  padding: 0.5rem;
+}
