@@ -1,13 +1,12 @@
 import { useNavigate, useParams } from "react-router-dom";
-import products from "../Product/products";
+import products_items from "../Product/products-items";
 import NavbarMarket from "../Navbar/Navbar";
 import "./ProductDetail.css"; 
 
 export default function ProductDetails() {
   const navigate = useNavigate();
   const { id } = useParams();
-  const product = products.find(p => p.id.toString() === id);
-  console.log(product?.image)
+  const product = products_items.find(p => p.id.toString() === id);
 
   if (!product) return <p>Produto não encontrado.</p>;
 
@@ -44,7 +43,6 @@ export default function ProductDetails() {
       >
         Voltar para a Loja
       </button>
-
     </div>
   </div>
 );

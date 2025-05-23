@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { ReactNode } from "react";
-import type { Product } from '../types/Product.type';
+import type { ProductType } from '../types/Product.type';
 import { CartContext } from '../context/CartContext';
 import { useEffect } from 'react';
 
@@ -9,7 +9,7 @@ const CART_STORAGE_KEY = 'cart_items';
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
 
-  const [cart, setCart] = useState<Product[]>(() => {
+  const [cart, setCart] = useState<ProductType[]>(() => {
     const storedCart = localStorage.getItem(CART_STORAGE_KEY);
     return storedCart ? JSON.parse(storedCart) : [];
   });
@@ -19,7 +19,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
   }, [cart]);
 
-  const addToCart = (product: Product) => {
+  const addToCart = (product: ProductType) => {
     setCart(prev => [...prev, product]);
   };
 

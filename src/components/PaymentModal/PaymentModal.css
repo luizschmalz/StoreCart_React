@@ -1,0 +1,65 @@
+
+
+.modal-wrapper {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+  padding: 1.5rem;
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: 1rem; 
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); 
+  max-width: 800px; 
+  width: 100%;
+  padding: 2rem; 
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: #4b5563; 
+  font-size: 1.5rem; 
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal-close:hover {
+  color: #111827; 
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem; 
+  text-align: center;
+}
+
+.modal-pixbox {
+  background-color: #f3f4f6;
+  border-radius: 0.5rem; 
+  padding: 1.5rem; 
+  text-align: center;
+  font-size: 1.125rem; 
+  font-family: monospace; 
+  user-select: all;
+  word-break: break-word;
+}
+
+.modal-info {
+  margin-top: 1rem;
+  text-align: center;
+  color: #4b5563;
+}
+
+.button-payment{
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+}

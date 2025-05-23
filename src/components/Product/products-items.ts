@@ -9,7 +9,7 @@ import cadeiragamer from "../../assets/cadeiragamer.jpg";
 import caneca from "../../assets/caneca.jpg";
 
 
-const products = [
+const products_items = [
   {
     id: 1,
     name: "Camiseta básica",
@@ -74,4 +74,4 @@ const products = [
     image: caneca
   }
 ];
-export default products;
+export default products_items;

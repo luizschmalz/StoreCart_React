@@ -1,18 +1,18 @@
 import { useNavigate } from "react-router-dom";
-import products from "../Product/products";
+import products_items from "./products-items";
 import "./products.css"
 import NavbarMarket from "../Navbar/Navbar";
 import { useCart } from "../../hooks/useCart";
 import { useState } from "react";
-import type { Product } from "../../types/Product.type";
+import type { ProductType } from "../../types/Product.type";
 import { toast } from "sonner";
 
-export default function Products() {
+const Products = () => {
     const navigate = useNavigate();
     const [disabledButtons, setDisabledButtons] = useState<Record<number, boolean>>({})
     const { addToCart } = useCart();
     
-    const handleAddToCart = (product:Product) => {
+    const handleAddToCart = (product:ProductType) => {
     toast.success(`${product.name} adicionado ao carrinho! 🛒`, {
     duration: 4000,
     });
@@ -34,7 +34,7 @@ export default function Products() {
     <div className="products flex-grow">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
         
-            {products.map(product => (
+            {products_items.map(product => (
             <div key={product.id} className="product-card">
                 <img className="h-40 rounded-lg object-cover object-center"
                 src={product.image}
@@ -68,3 +68,5 @@ export default function Products() {
     </div>
   );
 }
+
+export default Products;

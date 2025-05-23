@@ -1,12 +1,17 @@
 import { useNavigate } from "react-router-dom";
-import { useCart } from "../../hooks/useCart"; // ajuste o caminho conforme sua estrutura
+import { useState } from "react";
+import { useCart } from "../../hooks/useCart"; 
 import NavbarMarket from "../Navbar/Navbar";
 import "./Cart.css"; 
 import { toast } from "sonner";
+import PaymentModal from "../PaymentModal/PaymentModal";
+
 
 const Cart = () => {
   const { cart, removeFromCart, clearCart } = useCart();
   const navigate = useNavigate();
+  const [modalVisible, setModalVisible] = useState(false);
+
 
   if (cart.length === 0)
     return (
@@ -36,7 +41,7 @@ const Cart = () => {
     );
 
   return (
-      <div className="flex flex-col min-h-screen bg-gray-100">
+    <div className="flex flex-col min-h-screen bg-gray-100">
     <NavbarMarket />
 
     <div className="flex-grow container-main bg-gray-100">
@@ -100,12 +105,19 @@ const Cart = () => {
           </button>
           <button
             className="button bg-green-700 hover:bg-green-600 text-white rounded-xl font-semibold transition w-full sm:w-auto"
+            onClick={() => setModalVisible(true)}
           >
             Finalizar Compra
           </button>
+          <PaymentModal
+              visible={modalVisible}
+              onClose={() => setModalVisible(false)}
+              total={cart.length > 0 ? cart.reduce((acc, item) => acc + item.price, 0) : 0}
+          />
         </div>
       </div>
     </div>
+    
   </div>
 </div>
   );

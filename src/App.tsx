@@ -1,7 +1,7 @@
 
 import './App.css'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Products from './components/Product/Product';
+import Products from './components/Product/Products';
 import ProductDetails from './components/ProductDetail/ProductDetail';
 import Cart from './components/Cart/Cart';
 import { Toaster } from 'sonner';
