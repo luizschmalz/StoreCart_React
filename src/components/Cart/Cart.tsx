@@ -41,7 +41,7 @@ const Cart = () => {
     );
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100">
+    <div className="cart-allpage flex flex-col min-h-screen bg-gray-100">
     <NavbarMarket />
 
     <div className="flex-grow container-main bg-gray-100">

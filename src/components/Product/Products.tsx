@@ -37,7 +37,7 @@ const Products = () => {
             {products_items.map(product => (
             <div key={product.id} className="product-card">
                 <img className="h-40 rounded-lg object-cover object-center"
-                src={product.image}
+                  src={product.image || '/default-image.png'}
                 alt="gallery-photo" />
                 <h3 className="text-lg font-semibold text-gray-800">{product.name}</h3>
                 <p className="text-base font-bold text-green-700 mt-2">R$ {product.price.toFixed(2)}</p>

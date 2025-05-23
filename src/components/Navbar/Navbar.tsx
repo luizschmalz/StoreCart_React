@@ -12,7 +12,7 @@ const NavbarMarket = () => {
       <div className="navbarcontent mx-auto px-8 py-6 flex">
         <h1 className="text-3xl cursor-pointer font-extrabold text-white tracking-wider "
         onClick={() => navigate("/")}>
-          MinhaEmpresa
+          RocketStore
         </h1>
 
         <div className="relative">

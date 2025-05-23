@@ -58,7 +58,7 @@ describe('ProductDetails', () => {
     (useParams as jest.Mock).mockReturnValue({ id: product.id.toString() });
 
     render(<ProductDetails />);
-    const button = screen.getByRole('button', { name: /voltar para a loja/i });
+    const button = screen.getByRole('button', { name: /Voltar para a Loja/i });
     fireEvent.click(button);
 
     expect(mockNavigate).toHaveBeenCalledWith('/');

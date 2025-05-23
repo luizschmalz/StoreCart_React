@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import PaymentModal from './PaymentModal';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../hooks/useCart';
+import { toast } from 'sonner';
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -12,6 +13,11 @@ jest.mock('../../hooks/useCart', () => ({
   useCart: jest.fn(),
 }));
 
+jest.mock('sonner', () => ({
+  toast: {
+    success: jest.fn(),
+  },
+}));
 
 describe('PaymentModal', () => {
   const mockNavigate = jest.fn();
@@ -30,7 +36,7 @@ describe('PaymentModal', () => {
   it('deve renderizar corretamente quando estiver visível', () => {
     render(<PaymentModal visible={true} onClose={jest.fn()} total={123.45} />);
     expect(screen.getByText('Pagamento via PIX')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /finalizar compra/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Já paguei, voltar para o início/i })).toBeInTheDocument();
   });
 
   it('deve chamar onClose ao clicar no botão de fechar (×)', () => {
@@ -40,7 +46,7 @@ describe('PaymentModal', () => {
     expect(onClose).toHaveBeenCalled();
   });
 
-  it('deve limpar o carrinho, fechar o modal e redirecionar ao clicar em "Finalizar Compra"', () => {
+  it('deve limpar o carrinho, fechar o modal, redirecionar ao clicar em "Finalizar Compra" e mostrar toast', () => {
     const onClose = jest.fn();
     render(<PaymentModal visible={true} onClose={onClose} total={100} />);
     const finalizeButton = screen.getByRole('button', { name: /Já paguei, voltar para o início/i });
@@ -50,6 +56,10 @@ describe('PaymentModal', () => {
     expect(onClose).toHaveBeenCalled();
     expect(mockClearCart).toHaveBeenCalled();
     expect(mockNavigate).toHaveBeenCalledWith('/');
+    expect(toast.success).toHaveBeenCalledWith(
+      `Pagamento realizado, carrinho limpo! 🗑️`,
+      expect.objectContaining({ duration: 3000 }),
+    );
   });
 
   it('deve fechar o modal ao clicar no overlay', () => {

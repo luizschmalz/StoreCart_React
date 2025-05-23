@@ -3,6 +3,7 @@ import type { PaymentType } from "../../types/PaymentType"
 import "./PaymentModal.css";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../hooks/useCart";
+import { toast } from "sonner";
 
 const PaymentModal: React.FC<PaymentType> = ({ visible, onClose, total }) => {
 
@@ -43,7 +44,10 @@ const PaymentModal: React.FC<PaymentType> = ({ visible, onClose, total }) => {
             onClick={() => {
                         onClose();         
                         clearCart();        
-                        navigate("/");      
+                        navigate("/"); 
+                        toast.success(`Pagamento realizado, carrinho limpo! 🗑️`, {
+                        duration: 3000,
+                  });     
                     }}>
                 Já paguei, voltar para o início
             </button>

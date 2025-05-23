@@ -10,10 +10,18 @@ jest.mock('react-router-dom', () => ({
 }));
 
 jest.mock('../../hooks/useCart');
+
 jest.mock('sonner', () => ({
   toast: {
     error: jest.fn(),
   }
+}));
+
+jest.mock('../PaymentModal/PaymentModal', () => ({
+  __esModule: true,
+  default: ({ total }: { total: number }) => (
+    <div data-testid="payment-modal">Total recebido: {total}</div>
+  ),
 }));
 
 describe('Cart Component', () => {
@@ -132,4 +140,63 @@ describe('Cart Component', () => {
     render(<Cart />);
     expect(screen.getByRole('button', { name: /Finalizar Compra/i })).toBeInTheDocument();
   });
+
+  it('deve abrir o modal de pagamento ao clicar em "Finalizar Compra"', () => {
+  const fakeCart = [
+    { name: 'Produto 1', price: 10.99, image: 'image1.jpg' },
+  ];
+
+  (useCart as jest.Mock).mockReturnValue({
+    cart: fakeCart,
+    removeFromCart: mockRemoveFromCart,
+    clearCart: mockClearCart,
+  });
+
+  render(<Cart />);
+  const finishButton = screen.getByRole('button', { name: /Finalizar Compra/i });
+  fireEvent.click(finishButton);
+
+  // Verifica se algum conteúdo específico do modal aparece
+  expect(screen.getByTestId(/payment-modal/i)).toBeInTheDocument();
+});
+
+it('deve passar o valor total corretamente para o PaymentModal', () => {
+  const fakeCart = [
+    { name: 'Produto 1', price: 10.99, image: 'image1.jpg' },
+    { name: 'Produto 2', price: 20.01, image: 'image2.jpg' },
+  ];
+
+  (useCart as jest.Mock).mockReturnValue({
+    cart: fakeCart,
+    removeFromCart: mockRemoveFromCart,
+    clearCart: mockClearCart,
+  });
+
+  render(<Cart />);
+  const finishButton = screen.getByRole('button', { name: /Finalizar Compra/i });
+  fireEvent.click(finishButton);
+
+  expect(screen.getByTestId('payment-modal')).toHaveTextContent('Total recebido: 31');
+});
+
+it('deve renderizar as imagens dos produtos com o src correto', () => {
+  const fakeCart = [
+    { name: 'Produto 1', price: 10.99, image: 'image1.jpg' },
+    { name: 'Produto 2', price: 20.5, image: 'image2.jpg' },
+  ];
+
+  (useCart as jest.Mock).mockReturnValue({
+    cart: fakeCart,
+    removeFromCart: mockRemoveFromCart,
+    clearCart: mockClearCart,
+  });
+
+  render(<Cart />);
+  const images = screen.getAllByRole('img');
+
+  expect(images[0]).toHaveAttribute('src', 'image1.jpg');
+  expect(images[1]).toHaveAttribute('src', 'image2.jpg');
+});
+
+
 });

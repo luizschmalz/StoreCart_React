@@ -1,5 +1,5 @@
 .container-detail {
-    padding: 5rem;
+    padding: 4rem;
 }
 
 .product-name-text{
@@ -10,3 +10,6 @@
     padding: 1rem;
 }
 
+.product-detail-page{
+    overflow-y: scroll
+}

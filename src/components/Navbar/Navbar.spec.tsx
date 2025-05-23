@@ -24,7 +24,7 @@ describe('NavbarMarket', () => {
 
   it('deve renderizar o nome da empresa', () => {
     render(<NavbarMarket />);
-    expect(screen.getByText('MinhaEmpresa')).toBeInTheDocument();
+    expect(screen.getByText('RocketStore')).toBeInTheDocument();
   });
 
   it('deve mostrar a quantidade correta de itens no carrinho', () => {
@@ -34,7 +34,7 @@ describe('NavbarMarket', () => {
 
   it('deve navegar para a home ao clicar no nome da empresa', () => {
     render(<NavbarMarket />);
-    fireEvent.click(screen.getByText('MinhaEmpresa'));
+    fireEvent.click(screen.getByText('RocketStore'));
     expect(mockNavigate).toHaveBeenCalledWith('/');
   });
 

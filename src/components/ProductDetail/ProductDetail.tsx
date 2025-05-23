@@ -11,7 +11,7 @@ export default function ProductDetails() {
   if (!product) return <p>Produto não encontrado.</p>;
 
   return (
-  <div className="min-h-screen bg-gray-100 flex flex-col items-center">
+  <div className="product-detail-page min-h-screen bg-gray-100 flex flex-col items-center">
     <NavbarMarket />
     
     <div className="container-detail flex-grow w-full bg-white rounded-lg shadow-md flex flex-col items-center">
