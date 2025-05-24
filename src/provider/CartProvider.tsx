@@ -89,15 +89,18 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     setCart([]);
     saveStockToStorage(updatedProducts);
   };
-  
-  
 
+  const clearCartPayed = () =>{
+    setCart([]);
+  }
+  
+  
   const saveStockToStorage = (products: ProductType[]) => {
     localStorage.setItem(STOCK_STORAGE_KEY, JSON.stringify(products));
   };
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, products, setProducts}}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, clearCartPayed, products, setProducts}}>
       {children}
     </CartContext.Provider>
   );

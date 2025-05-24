@@ -6,6 +6,7 @@ export type CartContextType = {
   addToCart: (product: ProductType) => void;
   removeFromCart: (id: number) => void;
   clearCart: () => void;
+  clearCartPayed : () => void;
   products: ProductType[];
   setProducts: React.Dispatch<React.SetStateAction<ProductType[]>>;
   

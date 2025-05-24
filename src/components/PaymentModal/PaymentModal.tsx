@@ -8,7 +8,7 @@ import { toast } from "sonner";
 const PaymentModal: React.FC<PaymentType> = ({ visible, onClose, total }) => {
 
     const navigate = useNavigate();
-    const { clearCart } = useCart();
+    const { clearCartPayed } = useCart();
 
   useEffect(() => {
     if (!visible) return;
@@ -43,7 +43,7 @@ const PaymentModal: React.FC<PaymentType> = ({ visible, onClose, total }) => {
             className="button-payment bg-gray-800 hover:bg-gray-400 text-white rounded-xl font-semibold transition w-full sm:w-auto cursor-pointer"
             onClick={() => {
                         onClose();         
-                        clearCart();        
+                        clearCartPayed();        
                         navigate("/"); 
                         toast.success(`Pagamento realizado, carrinho limpo! 🗑️`, {
                         duration: 3000,
