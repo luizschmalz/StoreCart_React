@@ -19,7 +19,10 @@ describe('NavbarMarket', () => {
   beforeEach(() => {
     // 👇 Força o tipo para poder usar mockReturnValue sem erro do TS
     (useNavigate as jest.Mock).mockReturnValue(mockNavigate);
-    (useCart as jest.Mock).mockReturnValue({ cart: [1, 2, 3] });
+    (useCart as jest.Mock).mockReturnValue({ cart:  [
+      { id: 1, name: 'Produto 1', price: 10.99, image: 'image1.jpg', qtd: 1 },
+      { id: 2, name: 'Produto 2', price: 20.5, image: 'image2.jpg', qtd: 1 },
+    ]});
   });
 
   it('deve renderizar o nome da empresa', () => {
@@ -29,7 +32,7 @@ describe('NavbarMarket', () => {
 
   it('deve mostrar a quantidade correta de itens no carrinho', () => {
     render(<NavbarMarket />);
-    expect(screen.getByText('3')).toBeInTheDocument();
+    expect(screen.getByText('2')).toBeInTheDocument();
   });
 
   it('deve navegar para a home ao clicar no nome da empresa', () => {

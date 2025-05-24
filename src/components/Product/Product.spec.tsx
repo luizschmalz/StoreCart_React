@@ -36,6 +36,8 @@ describe('Products', () => {
     // Força o mock do useCart a retornar addToCart mockado
     (useCart as jest.Mock).mockReturnValue({
       addToCart: mockAddToCart,
+      products: products_items,
+      setProducts: jest.fn(),
     });
   });
 
@@ -80,4 +82,33 @@ describe('Products', () => {
 
     expect(mockNavigate).toHaveBeenCalledWith(`/products/${firstProduct.id}`);
   });
+
+
+  it('deve adicionar ao carrinho apenas uma vez mesmo com múltiplos cliques', () => {
+    render(<Products />);
+  
+    const addButton = screen.getAllByText('Adicionar ao Carrinho')[0];
+    fireEvent.click(addButton);
+    fireEvent.click(addButton);
+    
+    expect(mockAddToCart).toHaveBeenCalledTimes(1);
+    expect(addButton).toBeDisabled();
+  });
+
+  it('deve atualizar a lista de produtos ao adicionar ao carrinho', () => {
+    const mockSetProducts = jest.fn();
+  
+    (useCart as jest.Mock).mockReturnValue({
+      addToCart: mockAddToCart,
+      products: products_items,
+      setProducts: mockSetProducts,
+    });
+  
+    render(<Products />);
+    const addButton = screen.getAllByText('Adicionar ao Carrinho')[0];
+    fireEvent.click(addButton);
+  
+    expect(mockSetProducts).toHaveBeenCalled();
+  });
+  
 });

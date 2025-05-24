@@ -53,25 +53,26 @@ describe('Cart Component', () => {
 
   it('deve renderizar os itens do carrinho', () => {
     const fakeCart = [
-      { name: 'Produto 1', price: 10.99, image: 'image1.jpg' },
-      { name: 'Produto 2', price: 20.5, image: 'image2.jpg' },
+      { id: 1, name: 'Produto 1', price: 10.99, image: 'image1.jpg', qtd: 1 },
+      { id: 2, name: 'Produto 2', price: 20.5, image: 'image2.jpg', qtd: 1 },
     ];
-
+  
     (useCart as jest.Mock).mockReturnValue({
       cart: fakeCart,
       removeFromCart: mockRemoveFromCart,
       clearCart: mockClearCart,
     });
-
+  
     render(<Cart />);
-
+  
     expect(screen.getByText('Produto 1')).toBeInTheDocument();
     expect(screen.getByText('R$ 10.99')).toBeInTheDocument();
     expect(screen.getByText('Produto 2')).toBeInTheDocument();
     expect(screen.getByText('R$ 20.50')).toBeInTheDocument();
-
-    expect(screen.getByText('R$ 31.49')).toBeInTheDocument(); // Total
+    expect(screen.getByText('R$ 31.49')).toBeInTheDocument(); 
   });
+  
+
 
   it('deve chamar removeFromCart e mostrar toast ao clicar em "Remover"', () => {
     const fakeCart = [
@@ -162,8 +163,8 @@ describe('Cart Component', () => {
 
 it('deve passar o valor total corretamente para o PaymentModal', () => {
   const fakeCart = [
-    { name: 'Produto 1', price: 10.99, image: 'image1.jpg' },
-    { name: 'Produto 2', price: 20.01, image: 'image2.jpg' },
+    { id: 1, name: 'Produto 1', price: 10.99, image: 'image1.jpg', qtd: 1 },
+    { id: 2, name: 'Produto 2', price: 20.5, image: 'image2.jpg', qtd: 1 },
   ];
 
   (useCart as jest.Mock).mockReturnValue({

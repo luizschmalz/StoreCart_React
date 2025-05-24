@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import type { PaymentType } from "../../types/PaymentType"
+import type { PaymentType } from "../../types/PaymentType.type"
 import "./PaymentModal.css";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../hooks/useCart";

@@ -36,6 +36,7 @@ const Cart = () => {
         </div>
 
     </div>
+    
   </div>
 </div>
     );
@@ -60,8 +61,11 @@ const Cart = () => {
             >
               <img className="w-16 h-16 rounded-lg object-cover object-center" src={item.image}></img>
               <span className="text-lg font-semibold text-gray-900 flex-1">{item.name}</span>
+              <span className="flex items-center justify-center bg-gray-100 text-gray-800 font-semibold text-sm px-3 py-1 rounded-lg">
+                Qtd: {item.qtd}
+              </span>
               <span className="text-lg font-semibold text-green-700 whitespace-nowrap">
-                R$ {item.price.toFixed(2)}
+                R$ {(item.price * item.qtd).toFixed(2)}
               </span>
               <button
                 onClick={() => {
@@ -82,8 +86,8 @@ const Cart = () => {
         <div className="flex justify-between items-center">
           <span className="text-xl font-semibold text-gray-800">Total:</span>
           <span className="text-xl font-bold text-green-700">
-            R$ {cart.reduce((acc, item) => acc + item.price, 0).toFixed(2)}
-          </span>
+            R$ {cart.reduce((acc, item) => acc + item.price * item.qtd, 0).toFixed(2)}
+          </span> 
         </div>
 
         <div className="buttons-div flex flex-col sm:flex-row gap-4 justify-center">
@@ -112,7 +116,7 @@ const Cart = () => {
           <PaymentModal
               visible={modalVisible}
               onClose={() => setModalVisible(false)}
-              total={cart.length > 0 ? cart.reduce((acc, item) => acc + item.price, 0) : 0}
+              total={cart.length > 0 ? cart.reduce((acc, item) => acc + item.price * item.qtd, 0) : 0}
           />
         </div>
       </div>
