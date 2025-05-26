@@ -11,6 +11,17 @@ const STOCK_STORAGE_KEY = 'product_stock';
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
 
+    //corrigindo para evitar erro de inicialização
+  useEffect(() => {
+  const isInitialized = localStorage.getItem('is_initialized');
+
+  if (!isInitialized) {
+    localStorage.setItem(STOCK_STORAGE_KEY, JSON.stringify(products_items));
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify([]));
+    localStorage.setItem('is_initialized', 'true');
+  }
+}, []);
+
   const [cart, setCart] = useState<ProductType[]>(() => {
     const storedCart = localStorage.getItem(CART_STORAGE_KEY);
     return storedCart ? JSON.parse(storedCart) : [];

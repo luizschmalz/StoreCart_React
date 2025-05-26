@@ -25,7 +25,7 @@ describe('PaymentModal', () => {
 
   beforeEach(() => {
     (useNavigate as jest.Mock).mockReturnValue(mockNavigate);
-    (useCart as jest.Mock).mockReturnValue({ clearCart: mockClearCart });
+    (useCart as jest.Mock).mockReturnValue({ clearCartPayed: mockClearCart });
   });
 
   it('não deve renderizar nada quando não estiver visível', () => {
@@ -46,7 +46,7 @@ describe('PaymentModal', () => {
     expect(onClose).toHaveBeenCalled();
   });
 
-  it('deve limpar o carrinho, fechar o modal, redirecionar ao clicar em "Finalizar Compra" e mostrar toast', () => {
+  it('deve limpar o carrinho, fechar o modal, redirecionar ao clicar em "Já paguei, voltar para o início" e mostrar toast', () => {
     const onClose = jest.fn();
     render(<PaymentModal visible={true} onClose={onClose} total={100} />);
     const finalizeButton = screen.getByRole('button', { name: /Já paguei, voltar para o início/i });
