@@ -11,7 +11,7 @@ git clone https://github.com/luizschmalz/StoreCart_React.git
 Após clonar o repositório navegue para ele no seu terminal 
 
 ```bash
-cd StoreCart_React.git
+cd StoreCart_React
 ```
 Em seguida instale as dependências
 ```bash
